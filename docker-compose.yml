@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: turn_server
+    ports:
+      - "3478:3478/udp"
+      - "3478:3478"
+      - "5349:5349"
+      - "60000-60010:60000-60010/udp"
+      - "60000-60010:60000-60010"
+    environment:
+      - NODE_ENV=development
+      - TURN_PORT=3478
+      - TURN_TLS_PORT=5349
+      - TURN_USERNAME=zomiee
+      - TURN_PASSWORD=J2b2g07tGnD5
+      - TURN_REALM=localhost
+      - EXTERNAL_IP=192.168.110.122  # Add your public IP address here
+    volumes:
+      - .:/app
+    command: npm start
